@@ -8,10 +8,7 @@ import com.gk.emon.currency.model.CurrenciesApiResponse
 import com.gk.emon.currency.model.LatestRateApiResponse
 
 @Dao
-interface CurrencyDao {
+interface LatestRateDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAllCurrency(currenciesApiResponse: CurrenciesApiResponse)
-
-    @Query("SELECT * FROM CurrenciesApiResponse")
-    fun getAll(): CurrenciesApiResponse
+    fun insertAllLatestRates(latestRateApiResponse : LatestRateApiResponse)
 }

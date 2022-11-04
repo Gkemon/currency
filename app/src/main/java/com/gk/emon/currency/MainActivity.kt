@@ -10,7 +10,6 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.gk.emon.currency.databinding.ActivityMainBinding
 import com.gk.emon.currency.local_db.AppDatabase
-import com.gk.emon.currency.local_db.CurrencyDao
 import com.gk.emon.currency.model.CurrenciesApiResponse
 import com.gk.emon.currency.network.toMap
 import kotlinx.coroutines.GlobalScope
@@ -49,6 +48,14 @@ class MainActivity : AppCompatActivity() {
                 AppDatabase.getInstance(this@MainActivity).getCurrencyDao().insertAllCurrency(
                     result
                 )
+
+                service.getLatestExchangeRates("61d3eb0799864c1cb519933d81f1de12").body()
+                    ?.let { it ->
+                        AppDatabase.getInstance(this@MainActivity).getLatestRateDao()
+                            .insertAllLatestRates(
+                                it
+                            )
+                    }
             }
         }
     }

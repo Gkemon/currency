@@ -17,6 +17,7 @@ import com.gk.emon.currency.model.LatestRateApiResponse
 @TypeConverters(MapConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun getCurrencyDao(): CurrencyDao
+    abstract fun getLatestRateDao(): LatestRateDao
 
     companion object {
 
